@@ -10,3 +10,6 @@
 [submodule "vim-markdown"]
 	path = vim-markdown
 	url = git://github.com/plasticboy/vim-markdown.git
+[submodule "tabbar"]
+	path = tabbar
+	url = git://github.com/treelite/tabbar.git
