@@ -13,3 +13,9 @@
 [submodule "tabbar"]
 	path = tabbar
 	url = git://github.com/treelite/tabbar.git
+[submodule "jshint.vim"]
+	path = jshint.vim
+	url = git://github.com/walm/jshint.vim.git
+[submodule "vim-jsbeautify"]
+	path = vim-jsbeautify
+	url = git://github.com/maksimr/vim-jsbeautify.git
