@@ -2,4 +2,4 @@
 
 Include plugins, color scheme and .vimrc etc...
 
-front-end developer may be like this
+Front-end developers may like it
