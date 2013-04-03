@@ -30,13 +30,14 @@ set backspace=indent,eol,start
 
 set guioptions-=m
 set guioptions-=T
-map <silent> <F4> :if &guioptions =~# 'T' <Bar>
-        \set guioptions-=T <Bar>
-        \set guioptions-=m <bar>
-    \else <Bar>
-        \set guioptions+=T <Bar>
-        \set guioptions+=m <Bar>
-    \endif<CR>
+
+"map <silent> <F4> :if &guioptions =~# 'T' <Bar>
+"        \set guioptions-=T <Bar>
+"        \set guioptions-=m <bar>
+"    \else <Bar>
+"        \set guioptions+=T <Bar>
+"        \set guioptions+=m <Bar>
+"    \endif<CR>
 
 set nobackup		" do not keep a backup file, use versions instead
 
@@ -61,8 +62,9 @@ set guifont=menlo:h12
 
 nmap <F2> :nohlsearch<CR>
 nmap <F3> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
+nmap <F4> :JSBeautify<CR>
 nmap <F5> :JSHint<CR>
+nmap <F8> :TagbarToggle<CR>
 
 let g:miniBufExplorerMoreThanOne=0
 
@@ -121,12 +123,22 @@ endif " has("autocmd")
 
 " beautify js
 function! s:beautify()
-    let cmdline = ['%!js-beautify -']
+    let cmdline = ['%!js-beautify']
+
+    let filename = expand('%')
+    let suffix = strpart(filename, stridx(filename, '.') + 1)
+
+    if (suffix == 'css')
+        call add(cmdline, ' --type css')
+        call add(cmdline, ' --no-preserve-newlines')
+    elseif ('html|htm|tpl' =~ suffix )
+        call add(cmdline, ' --type html') 
+    endif
+
+    call add(cmdline, ' -')
 
     silent execute join(cmdline)
 
-    " delete top 2 line
-    normal ggvjD
 endfunction
 
 command! JSBeautify call s:beautify()
