@@ -60,13 +60,18 @@ set noerrorbells
 colorscheme yytextmate
 set guifont=menlo:h12
 
+nmap <C-H> :bp<CR>
+nmap <C-L> :bn<CR>
 nmap <F2> :nohlsearch<CR>
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F4> :JSBeautify<CR>
 nmap <F5> :JSHint<CR>
+nmap <F7> :CtrlP<CR>
 nmap <F8> :TagbarToggle<CR>
 
-let g:miniBufExplorerMoreThanOne=0
+let g:miniBufExplorerMoreThanOne = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:vim_markdown_folding_disabled = 1
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -99,7 +104,9 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " autocmd FileType text setlocal textwidth=78
+
+  au BufRead,BufNewFile *.text set filetype=mkd
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
