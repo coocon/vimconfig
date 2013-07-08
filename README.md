@@ -15,5 +15,5 @@ To use this config, you need to install [Pathogen](https://github.com/tpope/vim-
 
 ## Update
 
-    $ cd ~/.vim
+    $ cd ~/.vim/bundle
     $ git pull
