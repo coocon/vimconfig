@@ -4,15 +4,18 @@
 [submodule "tagbar"]
 	path = tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule "acp"]
-	path = acp
-	url = git://github.com/eikenberry/acp.git
 [submodule "vim-markdown"]
 	path = vim-markdown
 	url = git://github.com/plasticboy/vim-markdown.git
 [submodule "tabbar"]
 	path = tabbar
 	url = git://github.com/treelite/tabbar.git
-[submodule "jshint.vim"]
-	path = jshint.vim
-	url = git://github.com/walm/jshint.vim.git
+[submodule "neocomplcache.vim"]
+	path = neocomplcache.vim
+	url = https://github.com/Shougo/neocomplcache.vim.git
+[submodule "ctrlp.vim"]
+	path = ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim-less"]
+	path = vim-less
+	url = https://github.com/groenewege/vim-less.git
