@@ -60,8 +60,8 @@ set noerrorbells
 colorscheme yytextmate
 set guifont=menlo:h12
 
-nmap <C-H> :bp<CR>
-nmap <C-L> :bn<CR>
+nmap <S-H> :bp<CR>
+nmap <S-L> :bn<CR>
 nmap <F2> :nohlsearch<CR>
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F4> :JSBeautify<CR>
@@ -120,13 +120,14 @@ if has("autocmd")
 
   " do check before save js file
   " autocmd BufWritePre,FileWritePre,FileAppendPre *.js : JSHint
+  let g:user_emmet_install_global = 0
+  autocmd FileType html,tpl,vm EmmetInstall
 
 else
 
   set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
-
 
 " beautify js
 function! s:beautify()
@@ -147,5 +148,25 @@ function! s:beautify()
     silent execute join(cmdline)
 
 endfunction
+
+" vim-airline setting
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 command! JSBeautify call s:beautify()
