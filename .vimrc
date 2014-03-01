@@ -59,6 +59,11 @@ set noerrorbells
 
 colorscheme yytextmate
 set guifont=menlo:h12
+"设置正常搜索和插入模式的英文模式;输入模式esc后会自动切换成英文
+"need to disable macvim'option(COMMAND+,):  Draw marked text inline
+set noimdisable
+autocmd! InsertLeave * set imdisable|set iminsert=0
+autocmd! InsertEnter * set noimdisable|set iminsert=0
 
 nmap <S-H> :bp<CR>
 nmap <S-L> :bn<CR>
