@@ -62,11 +62,13 @@ set guifont=menlo:h12
 
 "InsertMode use IME else set imdisable                    
 "need to disable macvim'option(COMMAND+,):  Draw marked text inline
-set imdisable                                             
-set imsearch=0                                            
-autocmd! CompleteDone  * set imdisable|set iminsert=0 "for macvim
-autocmd! InsertEnter * set noimdisable|set iminsert=0     
-autocmd! InsertLeave * set imdisable|set iminsert=0  
+if has('mac')
+    set imdisable                                             
+    set imsearch=0                                            
+    autocmd! CompleteDone  * set imdisable|set iminsert=0 "for macvim
+    autocmd! InsertEnter * set noimdisable|set iminsert=0     
+    autocmd! InsertLeave * set imdisable|set iminsert=0  
+endif
 
 nmap <S-H> :bp<CR>
 nmap <S-L> :bn<CR>
