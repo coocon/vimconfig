@@ -10,16 +10,42 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+"不要临时文件
+set noswapfile
+
+
+filetype plugin indent on    " required
+
+
 if v:progname =~? "evim"
   finish
 endif
+
+
 
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 language message zh_CN.UTF-8
 
+" 执行pathogen 
 execute pathogen#infect()
+
+" 安装 syntastic 包含eslint等插件
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+"提示错误 ，但是默认不显示出来 error list
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"开启eslint
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -47,8 +73,8 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
 set autoindent
-set expandtab 
-set tabstop=4 
+set expandtab
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set nu
@@ -60,21 +86,21 @@ set noerrorbells
 colorscheme yytextmate
 set guifont=menlo:h12
 
-"InsertMode use IME else set imdisable                    
+"InsertMode use IME else set imdisable
 "need to disable macvim'option(COMMAND+,):  Draw marked text inline
 if has('mac')
-    set imdisable                                             
-    set imsearch=0                                            
+    set imdisable
+    set imsearch=0
     autocmd! CompleteDone  * set imdisable|set iminsert=0 "for macvim
-    autocmd! InsertEnter * set noimdisable|set iminsert=0     
-    autocmd! InsertLeave * set imdisable|set iminsert=0  
+    autocmd! InsertEnter * set noimdisable|set iminsert=0
+    autocmd! InsertLeave * set imdisable|set iminsert=0
 endif
 
 nmap <S-H> :bp<CR>
 nmap <S-L> :bn<CR>
 nmap <F2> :nohlsearch<CR>
 nmap <F3> :NERDTreeToggle<CR>
-nmap <F4> :JSBeautify<CR>
+nmap <F4> :lopen<CR>
 nmap <F5> :JSHint<CR>
 nmap <F7> :CtrlP<CR>
 nmap <F8> :TagbarToggle<CR>
@@ -82,6 +108,7 @@ nmap <F8> :TagbarToggle<CR>
 let g:miniBufExplorerMoreThanOne = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:vim_markdown_folding_disabled = 1
+
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -150,7 +177,7 @@ function! s:beautify()
         call add(cmdline, ' --type css')
         call add(cmdline, ' --no-preserve-newlines')
     elseif ('html|htm|tpl' =~ suffix )
-        call add(cmdline, ' --type html') 
+        call add(cmdline, ' --type html')
     endif
 
     call add(cmdline, ' -')
@@ -179,4 +206,3 @@ let g:airline_symbols.paste = 'ρ'
 "let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-command! JSBeautify call s:beautify()
