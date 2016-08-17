@@ -1,8 +1,6 @@
 # My Vim Config
 
-Include plugins, color scheme and .vimrc etc
-
-Front-end developers may like it
+包含常用插件，代码高亮，eslint，nerdtree等
 
 ## Installation
 
